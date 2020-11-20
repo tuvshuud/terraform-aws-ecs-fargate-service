@@ -80,10 +80,10 @@ resource "aws_ecs_service" "service" {
   dynamic "service_registries" {
     for_each = var.service_registries
     content {
-      registry_arn   = lookup(service_registries, "registry_arn")
-      port           = lookup(service_registries, "port", null)
-      container_name = lookup(service_registries, "container_name", null)
-      container_port = lookup(service_registries, "container_port", null)
+      registry_arn   = lookup(var.service_registries, "registry_arn")
+      port           = lookup(var.service_registries, "port", null)
+      container_name = lookup(var.service_registries, "container_name", null)
+      container_port = lookup(var.service_registries, "container_port", null)
     }
   }
   task_definition = var.task_definition_arn
